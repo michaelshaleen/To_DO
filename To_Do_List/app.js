@@ -1,7 +1,8 @@
 //Selectors
-const todoInput = document.querySelector(".todo-input");
+//changed from const to let
+let todoInput = document.querySelector(".todo-input");
 let todoButton = document.querySelector(".todo-button");
-const todoList = document.querySelector(".todo-list");
+let todoList = document.querySelector(".todo-list");
 
 
 //Event Listeners
