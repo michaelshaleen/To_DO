@@ -20,12 +20,9 @@ function addToDo(e){
 
 
   const newToDo = document.createElement('li');
-  newToDo.innerText = 'hey';
+  newToDo.innerText = todoInput.value;
   newToDo.classList.add('todo-item')
   toDoDiv.appendChild(newToDo);
-
-
-
 
   // completed button
   const completedButton = document.createElement('button');
@@ -41,6 +38,11 @@ function addToDo(e){
 
   //append to list
   todoList.appendChild(toDoDiv)
+
+  clearInput();
 }
 
 
+function clearInput(){
+  todoInput.value = "";
+}
