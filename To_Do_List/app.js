@@ -3,7 +3,7 @@
 let todoInput = document.querySelector(".todo-input");
 let todoButton = document.querySelector(".todo-button");
 let todoList = document.querySelector(".todo-list");
-let filterOption = document.querySelector(".filter-todo")
+let filterOption = document.querySelector(".filter-todo");
 
 //Event Listeners
 // console.log(todoButton, "button")
@@ -24,6 +24,8 @@ function addToDo(e){
   newToDo.innerText = todoInput.value;
   newToDo.classList.add('todo-item')
   toDoDiv.appendChild(newToDo);
+  //Add todo to local storage
+  saveLocalTodos(todoInput.value)
 
   // completed button
   const completedButton = document.createElement('button');
@@ -49,13 +51,11 @@ function clearInput(){
 }
 function deleteCheck(e){
   const item = e.target;
-
   if(item.classList[0] === "trash-btn"){
     const todo = item.parentElement;
     //animation
-
     todo.classList.add("fall")
-    todo.addEventListener('transistioned', function(){
+    todo.addEventListener('transitioned', function(){
       todo.remove();
     });
   }
@@ -74,20 +74,35 @@ function filterToDo(e){
         todo.style.display = "flex";
         break;
       case "completed":
-        if(todo.classList.contains("completed")) {
-          todo.style.display = 'flex';
+        if (todo.classList.contains("completed")){
+          todo.style.display = "flex";
         }else{
           todo.style.display = "none";
         }
         break;
       case "uncompleted":
-        if(!todo.classList.contains("completed")){
-          todo.style.display = 'flex';
+        if (!todo.classList.contains("completed")){
+          todo.style.display = "flex";
         }else{
           todo.style.display = "none";
         }
         break;
     }
   });
+
+}
+
+
+function saveLocalTodos(todo){
+  let todos;
+  //check, do I already have todos??
+  if (localStorage.getItem('todos') == null){
+    todos = [];
+  }else{
+    todos = JSON.parse(localStorage.getItem('todos'));
+  }
+  //add to the array
+  todos.push(todo);
+  localStorage.setItem('todos', JSON.stringify(todos));
 
 }

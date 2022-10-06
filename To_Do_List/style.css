@@ -67,9 +67,8 @@ form button:hover{
   transition: all 1s ease;
 
 }
-.todo-li {
+.todo li {
   flex: 1;
-
 }
 
 .trash-btn, 
@@ -134,6 +133,7 @@ select{
   right: 0;
   padding: 1rem;
   pointer-events: none;
+  transition: all 0.3s ease;
 }
 
 .select:hover::after{
